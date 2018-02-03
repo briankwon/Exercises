@@ -1,8 +1,8 @@
 package com.brian.classAndInherit;
 
 public class Person {
-    private String name;
-    private int age;
+    private String name = "nobody";
+    private int age = -1;
     static int i;
 
     public Person() {

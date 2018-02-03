@@ -8,8 +8,8 @@ public class sortBase {
         return v.compareTo(w) < 0;
     }
 
-    private static void exchange(Comparable[] a, int i, int j) {
-        Comparable t = a[i];
+    public static void swap(int[] a, int i, int j) {
+        int t = a[i];
         a[i] = a[j];
         a[j] = t;
     }
