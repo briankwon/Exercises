@@ -12,6 +12,11 @@ public class s3s1s2 {
 
         return processRecur(s1, 0, s2, 0, s3, 0);
     }
+
+    public static boolean processDP(String s1, String s2, String s3) {
+        return false;
+    }
+
     //递归的定义，从s1的l1元素开始往后以及s2的l2元素开始往后的字符能否组成s3的l3元素开始之后的字符串
     public static boolean processRecur(String s1, int l1, String s2, int l2, String s3, int l3) {
         if (l1 == s1.length() && l2 == s2.length() && l3 == s3.length()) {

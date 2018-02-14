@@ -6,8 +6,15 @@ public class quickSort {
             return;
         }
 
+
+
         //arr= [1,2,3,4,5,6,7]，在这种情况下partition后sort的下半部分传入的参数会是[7，6]，需要(L < R)的判断来跳过这种情况
         if (L < R) {
+            //小于5时直接插入排序
+            if (R - L + 1 < 5) {
+                insertSort(arr, L, R);
+                return;
+            }
             //从数组中[L, R]的范围内随机选择一个数放到最后并作为划分值，避免了arr[R]如果选不好造成整体性能差的问题
             //注意要加上L
             swap(arr, L + (int) Math.random() * (R - L + 1), R);
@@ -16,6 +23,16 @@ public class quickSort {
             sort(arr, ++p[1], R);
         }
 
+    }
+
+    public static void insertSort(int[] arr, int L, int R) {
+        for (int i = L + 1; i < R; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr[j] > arr[j + 1]) {
+                    swap(arr, j, j + 1);
+                }
+            }
+        }
     }
 
     //只有左区间
@@ -125,11 +142,11 @@ public class quickSort {
 
 
     public static void main(String[] args) {
-        int[] arr = {2,3,6,845,4,1234,345,6567,758,5,432,4,2112,89,45,6,87,3465,5468,89};
+        int[] arr = {2,3,6,845,4,12,34,34,5,65,67,758,5,432,4,21,12,89,45,6,87,34,65,546,8,89};
         int[] arr1 = {3,4,5,0,6,4};
         int[] arr2 = {3,2,1,4,0,6,4};
 
-        sort4(arr, 0, arr.length - 1);
+        sort(arr, 0, arr.length - 1);
 
         for (int ele : arr) {
             System.out.print(ele + " ");

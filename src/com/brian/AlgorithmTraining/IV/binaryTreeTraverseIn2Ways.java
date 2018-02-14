@@ -46,6 +46,26 @@ public class binaryTreeTraverseIn2Ways {
         inOrderRecur(head.right);
     }
 
+    public static void inOrderUnRecur(TreeNode head) {
+        if (head == null) {
+            return;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(head);
+
+        while (!stack.isEmpty() || head != null) {
+            if (head != null) {
+                stack.push(head);
+                head = head.left;
+            } else {
+                head = stack.pop();
+                System.out.print(head.val + " ");
+                head = head.right;
+            }
+        }
+    }
+
     public static void posOrderRecur(TreeNode head) {
         if (head == null) {
             return;
@@ -85,7 +105,10 @@ public class binaryTreeTraverseIn2Ways {
         System.out.println("============unrecursive=============");
         System.out.print("pre-order: ");
         preOrderUnRecur(head);
-//        inOrderUnRecur(head);
+        System.out.println();
+        System.out.print("in-order: ");
+        inOrderUnRecur(head);
+        System.out.println();
 //        posOrderUnRecur1(head);
 //        posOrderUnRecur2(head);
     }

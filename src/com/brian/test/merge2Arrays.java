@@ -1,7 +1,7 @@
 package com.brian.test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 public class merge2Arrays {
 //    public static void main(String[] args) {
@@ -32,16 +32,30 @@ public class merge2Arrays {
 //    public static void hashmapMerge (int[] a, int[] b) {
 //    }
       public static void main (String[] args) {
-          Map map=new HashMap();
-          Integer[] arrN={1,2,3,4,5,6,7,8,9};
-          Integer[] arrM={1,1,12,3,2,5,9,1};
-          for(int i=0;i<arrN.length;i++){
-              map.put(""+arrN[i], arrN[i]);
+//          Map map=new HashMap();
+//          Integer[] arrN={1,2,3,4,5,6,7,8,9};
+//          Integer[] arrM={1,1,12,3,2,5,9,1};
+//          for(int i=0;i<arrN.length;i++){
+//              map.put(""+arrN[i], arrN[i]);
+//          }
+//          for(int j=0;j<arrM.length;j++){
+//              if(map.get(""+arrM[j])!=null){
+//                  System.out.println("相同的元素有"+arrM[j]);
+//              }
+//          }
+          Set<Integer> set = new HashSet<>();
+
+          int[] arr1 = {1,2,3,4,5,6,7,8,9};
+          int[] arr2 = {1,1,12,3,2,5,9,1};
+          for (int num : arr1) {
+              set.add(num);
           }
-          for(int j=0;j<arrM.length;j++){
-              if(map.get(""+arrM[j])!=null){
-                  System.out.println("相同的元素有"+arrM[j]);
+
+          for (int num : arr2) {
+              if (set.contains(num)) {
+                  System.out.println("same element : " + num);
               }
           }
+
       }
 }
