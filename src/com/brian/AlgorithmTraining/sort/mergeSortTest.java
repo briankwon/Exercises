@@ -1,21 +1,22 @@
 package com.brian.AlgorithmTraining.sort;
 
 public class mergeSortTest {
-    public static void sort(int[] arr, int L, int R, int[] result) {
-        //递归的出口：当L和R相遇时，退出递归
+    public static void sort(int[] arr, int L, int R) {
         if (L == R) {
             return;
         }
-        //注意这里是(R-L)
+
         int M = L + (R - L) / 2;
-        sort(arr, L, M, result);
-        sort(arr, M + 1, R, result);
-        merge(arr, L, M, R, result);
+        sort(arr, L, M);
+        sort(arr, M + 1, R);
+        merge(arr, L, M, R);
     }
 
-    public static void merge(int[] arr, int L, int M, int R, int[] result) {
-        int i = L, j = M + 1;
-        int index = L;
+    public static void merge(int[] arr, int L, int M, int R) {
+        int i = L;
+        int j = M + 1;
+        int index = 0;
+        int[] result = new int[R - L + 1];
 
         while (i <= M && j <= R) {
             if (arr[i] <= arr[j]) {
@@ -25,23 +26,22 @@ public class mergeSortTest {
             }
         }
 
-        //左右两边一定又一遍遍历完
         while (i <= M) {
             result[index++] = arr[i++];
         }
+
         while (j <= R) {
             result[index++] = arr[j++];
         }
-        //将result数组中同位置上的数字拷贝到原数组中
-        for (int k = L; k <= R; k++) {
-            arr[k] = result[k];
+
+        for (int k = 0; k < result.length; k++) {
+            arr[L + k] = result[k];
         }
     }
 
     public static void main(String[] args) {
         int[] arr = {1234,2345,3456,34,53,24,12,4,231,4123,6,5,67,576,54,67};
-        int[] result = new int[arr.length];
-        sort(arr, 0, arr.length - 1, result);
+        sort(arr, 0, arr.length - 1);
         for (int num : arr) {
             System.out.print(num + " ");
         }

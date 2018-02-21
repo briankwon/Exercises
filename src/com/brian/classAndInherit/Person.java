@@ -30,6 +30,6 @@ public class Person {
     }
 
     public void printSth(String str) {
-        System.out.println("Some str: " + str);
+        System.out.println("from Person.Class: " + str);
     }
 }

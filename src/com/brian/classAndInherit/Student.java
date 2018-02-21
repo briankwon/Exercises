@@ -16,6 +16,11 @@ public class Student extends Person implements Cloneable {
     }
 
     @Override
+    public void printSth(String str) {
+        System.out.println("from Student.Class = " + str);
+    }
+
+    @Override
     public String toString() {
         return super.getName() + " " + super.getAge() + " " + banji;
     }

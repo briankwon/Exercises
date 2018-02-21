@@ -1,7 +1,6 @@
 package com.brian.demo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -9,20 +8,23 @@ import java.util.List;
  */
 public class HowToCreateArray {
     public static void main(String[] args) {
-        List<String> list =  new ArrayList<String>();
+        List<String> list =  new LinkedList<>();
         list.add("First");
         list.add("SECOND");
         list.add("THIRD");
         list.add("FOURTH");
-        System.out.println(list);
+        System.out.println(list.size());
+        list.add("fifth");
+        list.add("sixth");
+        list.add("sixth");
+        list.add("sixth");
+        list.add("sixth");
+        list.add("sixth");
+        list.add("sixth");
+        list.add("sixth");
+        list.add("sixth");
+        System.out.println("after adding a new element, size = " + list.size());
 
-        String[] array = new String[] {"FIRST", "SECOND", "THIRD", "FOURTH"};
-        System.out.println(Arrays.toString(array));
-
-        String[] arr1 = new String[] {"FIFTH", "SIXTH"};
-        List<List<String>> myList = new ArrayList<List<String>>();
-        String name = "brian";
-        System.out.println(name.length());
     }
 
 }

@@ -7,6 +7,7 @@ public class selectionSort {
         }
 
         for (int i = 0; i < arr.length - 1; i++) {
+            //注意是 i，这里老错
             int minPoint = i;
             for (int j = i + 1; j < arr.length; j++) {
                 if (arr[minPoint] > arr[j]) {

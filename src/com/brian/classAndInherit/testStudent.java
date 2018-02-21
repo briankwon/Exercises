@@ -28,5 +28,8 @@ public class testStudent {
         Student x4 = (Student) x1.clone();
         System.out.println(x4);
 
+        Person x5 = new Student();
+        x5.printSth("hh");
+
     }
 }

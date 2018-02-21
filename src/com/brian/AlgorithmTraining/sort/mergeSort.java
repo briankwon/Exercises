@@ -19,7 +19,7 @@ public class mergeSort {
 
         while (i <= M && j <= R) {
             //加上=变成稳定排序
-            if (arr[i] < arr[j]) {
+            if (arr[i] <= arr[j]) {
                 result[index++] = arr[i++];
             } else {
                 result[index++] = arr[j++];

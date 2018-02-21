@@ -6,8 +6,6 @@ public class quickSort {
             return;
         }
 
-
-
         //arr= [1,2,3,4,5,6,7]，在这种情况下partition后sort的下半部分传入的参数会是[7，6]，需要(L < R)的判断来跳过这种情况
         if (L < R) {
             //小于5时直接插入排序
@@ -15,14 +13,13 @@ public class quickSort {
                 insertSort(arr, L, R);
                 return;
             }
-            //从数组中[L, R]的范围内随机选择一个数放到最后并作为划分值，避免了arr[R]如果选不好造成整体性能差的问题
+            //从数组中[L, R]的范围内随机选择一个数和最后一个数交换作为划分值，避免了arr[R]如果选不好造成整体性能差的问题
             //注意要加上L
             swap(arr, L + (int) Math.random() * (R - L + 1), R);
             int[] p = partition(arr, L, R);
             sort(arr, L, --p[0]);
             sort(arr, ++p[1], R);
         }
-
     }
 
     public static void insertSort(int[] arr, int L, int R) {

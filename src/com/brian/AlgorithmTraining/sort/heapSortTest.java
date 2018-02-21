@@ -1,44 +1,49 @@
 package com.brian.AlgorithmTraining.sort;
 
 public class heapSortTest {
-    public static void sort(int[] A) {
-        if (A == null || A.length == 0) {
+    public static void sort(int[] arr) {
+        if (arr == null || arr.length == 0) {
             return;
         }
-        //建立大根堆
-        for (int i = 0; i < A.length; i++) {
-            heapInsert(A, i);
+
+        //插成大根堆
+        for (int i = 0; i < arr.length; i++) {
+            heapInsert(arr, i);
         }
-        int heapSize = A.length;
-        swap(A, 0, --heapSize);
+
+        int heapSize = arr.length;
+        //取出根顶，heapSize - 1
+        swap(arr, 0, --heapSize);
+
+        //堆化并取出根顶，heapSize - 1
         while (heapSize > 0) {
-            heapify(A, 0, heapSize);
-            swap(A, 0, --heapSize);
+            heapify(arr, 0, heapSize);
+            swap(arr, 0, --heapSize);
         }
     }
 
-    //插成大根堆
-    public static void heapInsert(int[] A, int index) {
-        while(A[index] > A[(index - 1) / 2]) {
-            swap(A, index, (index - 1) / 2);
+    public static void heapInsert(int[] arr, int index) {
+        while (arr[index] > arr[(index - 1) / 2]) {
+            swap(arr, index, (index - 1) / 2);
             index = (index - 1) / 2;
         }
     }
 
-    public static void heapify(int[] A, int index, int heapSize) {
+    public static void heapify(int[] arr, int index, int heapSize) {
         int left = index * 2 + 1;
+
         while (left < heapSize) {
-            int largest = left + 1 < heapSize && A[left + 1] > A[left] ? left + 1 : left;
-            largest = A[largest] > A[index] ? largest : index;
+            int largest = left + 1 < heapSize && arr[left + 1] > arr[left] ? left + 1 : left;
+            largest = arr[largest] > arr[index] ? largest : index;
+
             if (largest == index) {
                 break;
             }
-            swap(A, index, largest);
+
+            swap(arr, largest, index);
             index = largest;
             left = index * 2 + 1;
         }
-
-
     }
 
     public static void swap(int[] arr, int x, int y) {
@@ -55,3 +60,4 @@ public class heapSortTest {
         }
     }
 }
+
