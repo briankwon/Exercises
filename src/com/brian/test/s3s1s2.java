@@ -52,6 +52,10 @@ public class s3s1s2 {
         int p2 = 0;
 
         for (int i = 0; i < s3.length(); i++) {
+            if (p1 < s1.length() && c1[p1] == c3[i] && p2 < s2.length() && c2[p2] == c3[i]) {
+                return process(s1.substring(p1 + 1), s2.substring(p2), s3.substring(i + 1)) ||
+                        process(s1.substring(p1), s2.substring(p2 + 1), s3.substring(i + 1));
+            }
             if (p1 < s1.length() && c1[p1] == c3[i]) {
                 p1++;
             } else if (p2 < s2.length() && c2[p2] == c3[i]) {
@@ -69,5 +73,10 @@ public class s3s1s2 {
         String s3 = "adbecf";
         System.out.println(process(s1, s2, s3));
         System.out.println(doRecur(s1, s2, s3));
+
+        String s4 = "aa";
+        String s5 = "ab";
+        String s6 = "aaba";
+        System.out.println(process(s4, s5, s6));
     }
 }
