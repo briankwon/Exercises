@@ -1,7 +1,11 @@
 package com.brian.AlgorithmTraining.sort;
 
 public class mergeSortTest {
-    public static void sort(int[] arr, int L, int R) {
+    private static void sort(int[] arr, int L, int R) {
+        if (arr == null || arr.length == 0) {
+            return;
+        }
+
         if (L == R) {
             return;
         }
@@ -12,31 +16,32 @@ public class mergeSortTest {
         merge(arr, L, M, R);
     }
 
-    public static void merge(int[] arr, int L, int M, int R) {
+    private static void merge(int[] arr, int L, int M, int R) {
+        int[] cache = new int[R - L + 1];
+        int index = 0;
         int i = L;
         int j = M + 1;
-        int index = 0;
-        int[] result = new int[R - L + 1];
 
         while (i <= M && j <= R) {
             if (arr[i] <= arr[j]) {
-                result[index++] = arr[i++];
+                cache[index++] = arr[i++];
             } else {
-                result[index++] = arr[j++];
+                cache[index++] = arr[j++];
             }
         }
 
         while (i <= M) {
-            result[index++] = arr[i++];
+            cache[index++] = arr[i++];
         }
 
         while (j <= R) {
-            result[index++] = arr[j++];
+            cache[index++] = arr[j++];
         }
 
-        for (int k = 0; k < result.length; k++) {
-            arr[L + k] = result[k];
+        for (int k = 0; k < cache.length; k++) {
+            arr[L + k] = cache[k];
         }
+
     }
 
     public static void main(String[] args) {

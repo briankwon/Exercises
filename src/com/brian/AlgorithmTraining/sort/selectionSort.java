@@ -1,20 +1,36 @@
 package com.brian.AlgorithmTraining.sort;
 
 public class selectionSort {
-    public static void sort(int[] arr) {
-        if (arr == null || arr.length < 2) {
+//    public static void sort(int[] arr) {
+//        if (arr == null || arr.length < 2) {
+//            return;
+//        }
+//
+//        for (int i = 0; i < arr.length - 1; i++) {
+//            //注意是 i，这里老错
+//            int minPoint = i;
+//            for (int j = i + 1; j < arr.length; j++) {
+//                if (arr[minPoint] > arr[j]) {
+//                    minPoint = j;
+//                }
+//            }
+//            swap(arr, minPoint, i);
+//        }
+//    }
+
+    private static void sort(int[] arr) {
+        if (arr == null || arr.length == 0) {
             return;
         }
 
         for (int i = 0; i < arr.length - 1; i++) {
-            //注意是 i，这里老错
-            int minPoint = i;
+            int minPos = i;
             for (int j = i + 1; j < arr.length; j++) {
-                if (arr[minPoint] > arr[j]) {
-                    minPoint = j;
+                if (arr[minPos] > arr[j]) {
+                    minPos = j;
                 }
             }
-            swap(arr, minPoint, i);
+            swap(arr, i, minPos);
         }
     }
 

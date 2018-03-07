@@ -23,8 +23,8 @@ public class quickSort {
     }
 
     public static void insertSort(int[] arr, int L, int R) {
-        for (int i = L + 1; i < R; i++) {
-            for (int j = i - 1; j >= 0; j--) {
+        for (int i = L + 1; i <= R; i++) {
+            for (int j = i - 1; j >= L; j--) {
                 if (arr[j] > arr[j + 1]) {
                     swap(arr, j, j + 1);
                 }

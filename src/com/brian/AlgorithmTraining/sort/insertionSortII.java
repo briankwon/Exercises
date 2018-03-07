@@ -23,14 +23,18 @@ public class insertionSortII {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[10000];
+        int[] arr = new int[100];
         Random random = new Random();
-        for (int i = 0; i < 10000; i++) {
-            arr[i] = random.nextInt();
+        for (int i = 0; i < 100; i++) {
+            arr[i] = random.nextInt(100);
         }
         long start = System.nanoTime();
         arr = sort(arr);
         long end = System.nanoTime();
         System.out.println(end - start);
+
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
     }
 }
