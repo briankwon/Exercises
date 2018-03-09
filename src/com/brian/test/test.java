@@ -67,6 +67,8 @@ public class test {
 //            System.out.print(num + " ");
 //        }
 
+        System.out.println('5' - '0' + 1);
+
         Car c1 = new Car(1);
         Car c2 = new Car(2);
         System.out.println(c1.equals(c2));
