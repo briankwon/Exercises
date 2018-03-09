@@ -34,7 +34,10 @@ public class Q03findDuplicateInArray {
     }
 
     /**
-     * 禁止修改原数组
+     * 禁止修改原数组，二分的思想
+     * 取到start和end的中间数m，如果数组中分布在1~m区间上的数字个数超过m，说明重复的数字在前半部分，否则在后半部分。
+     * 重复这个过程直到start和end差一个单位
+     * 分别计算start和end在数组中出现的次数，返回大于1的那个数
      * @param arr
      * @return
      */
