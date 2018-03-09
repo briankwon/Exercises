@@ -51,6 +51,7 @@ public class quickSortLinkedList {
      * @param end
      */
     private static void quickSort(ListNode start, ListNode end) {
+        //递归的出口：start = end时，前面两个是
         if (start == null || end == null || start == end) {
             return;
         }
@@ -60,7 +61,7 @@ public class quickSortLinkedList {
         int mid = start.val;
 
         //防止越界，second只能到end为止，end之后是另一个递归
-        while (second != end.next || second != null) {
+        while (second != end.next && second != null) {
             if (second.val < mid) {
                 first = first.next;
 
@@ -70,18 +71,18 @@ public class quickSortLinkedList {
                     second.val = temp;
                 }
             }
-
+            //second向后移动
             second = second.next;
         }
 
-        //将pivot换到中间(first的位置)
+        //将pivot换到中间(first的位置)，但是当start = first时不用换
         if (start != first) {
             int temp = first.val;
             first.val = start.val;
             start.val = temp;
         }
 
-        //递归排序
+        //递归前后排序
         quickSort(start, first);
         quickSort(first.next, end);
     }
