@@ -8,8 +8,6 @@ public class second {
         process();
     }
 
-
-
     //1,A,0;2,B,1;3,C,2;4,D,2
     public static void process() {
         Scanner sc = new Scanner(System.in);
@@ -19,13 +17,33 @@ public class second {
 
             if (str == null) {
                 System.out.println("incorrect data");
+                continue;
             }
 
             String[] strs = str.split(";");
 
             if (strs.length < 3) {
                 System.out.println("incorrect data");
+                continue;
             }
+
+//            String[][] temp = new String[strs.length][3];
+//
+//            for (int i = 0; i < strs.length - 1; i = i + 2) {
+//                for (int j = i + 1; i < strs.length; j++) {
+//                    if (!temp[j][0].matches("[0-9]*") || !temp[j][1].matches("[A-Z]*")
+//                            || !temp[j][2].matches("[0-9]*")) {
+//                        System.out.println("incorrect data");
+//                        continue;
+//                    }
+//
+//                    if (Integer.valueOf(temp[j][0]) < Integer.valueOf(temp[i][0])
+//                            || Integer.valueOf(temp[j][2]) < Integer.valueOf(temp[i][2])) {
+//                        System.out.println("incorrect data");
+//                        continue;
+//                    }
+//                }
+//            }
 
             Node root = new Node();
             Node parent = null;
@@ -42,23 +60,12 @@ public class second {
                     continue;
                 }
 
-                Node node = new Node();
-                node.id = Integer.valueOf(temp[0]);
-                node.name = temp[1];
-                node.parentId = Integer.valueOf(temp[2]);
+                Node node = new Node(temp[1], Integer.valueOf(temp[0]), Integer.valueOf(temp[2]));
+                //node.id = Integer.valueOf(temp[0]);
+                //node.name = temp[1];
+                //node.parentId = Integer.valueOf(temp[2]);
                 maps.put(node.id, node);
             }
-
-
-            /**
-             * 1 A 0
-             * 2 B 1
-             * 3 C 1
-             */
-//            for (Map.Entry<Integer, Node> entry : maps.entrySet()) {
-//                Node node = entry.getValue();
-//                System.out.println(node.id + " " + node.name + " " +  node.parentId);
-//            }
 
             //建立多叉树
             for (Map.Entry<Integer, Node> entry : maps.entrySet()) {
@@ -66,23 +73,17 @@ public class second {
                 Integer parentId = e.parentId;
                 if (parentId == 0) {
                     //root.childs.put(e.id, e);
-                    root.parentId = 0;
-                    root.id = e.id;
-                    root.name = e.name;
-                    maps.replace(e.id, e, root);
+//                    root.parentId = 0;
+//                    root.id = e.id;
+//                    root.name = e.name;
+//                    maps.replace(e.id, e, root);
+                    root = e;
                 } else {
                     parent = maps.get(parentId);
-                    //System.out.println(e.parentId);
                     parent.childs.put(e.id, e);
-                    //System.out.println(maps.get(parentId).childs.get(2).name);
                 }
             }
 
-            System.out.println(root.id + " " + root.name + " " +  root.parentId);
-            for (Map.Entry<Integer, Node> entry : root.childs.entrySet()) {
-                Node node = entry.getValue();
-                System.out.println(node.id + " " + node.name + " " +  node.parentId);
-            }
             //广度优先遍历多叉树
             Queue<Node> queue = new LinkedList<>();
             String prefix = "";
@@ -91,19 +92,29 @@ public class second {
 
             while(!queue.isEmpty()) {
                 node = queue.poll();
-                System.out.print(node.name + "-");
 
-                if (node.childs != null && !node.childs.isEmpty()) {
+                int parentId = node.parentId;
+
+                if (parentId != 0) {
+                    String parentName = maps.get(parentId).name;
+                    int index = prefix.indexOf(parentName);
+                    prefix = prefix.substring(0, index + 2);
+                }
+
+                if (node.childs.size() == 0) {
+                    System.out.print(prefix + node.name + ";");
+                } else {
+                    prefix += node.name + "-";
+                }
+
+                if (!node.childs.isEmpty()) {
                     for (Map.Entry<Integer, Node> entry : node.childs.entrySet()) {
                         queue.add(entry.getValue());
                     }
                 }
             }
 
+            System.out.println();
         }
-    }
-    //从末尾开始向头部寻找当前部门的所属部门，并把其加入sb当中
-    public static void recur(Map<String, Map<String, String>> map, ArrayList<String> namelist, ArrayList<String> res) {
-
     }
 }
