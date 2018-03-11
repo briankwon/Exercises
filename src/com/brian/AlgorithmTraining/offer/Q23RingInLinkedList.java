@@ -8,7 +8,7 @@ public class Q23RingInLinkedList {
     }
 
     private static boolean find(ListNode head) {
-        if (head == null) {
+        if (head == null || head.next == null) {
             return false;
         }
 

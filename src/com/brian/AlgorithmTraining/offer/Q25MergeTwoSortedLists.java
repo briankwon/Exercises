@@ -44,7 +44,7 @@ public class Q25MergeTwoSortedLists {
             }
         }
 
-        //当一个链表先遍历完
+        //当一个链表先遍历完，说明剩下链表里面的元素比已经排序的部分都大，直接连接起已排序链表和剩下的链表就可以了
         if (first == null) {
             node.next = second;
         } else {

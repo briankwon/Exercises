@@ -26,7 +26,20 @@ public class Q10FreakJump {
         }
     }
 
+    /**
+     * 当n = n 时，共有n种跳的方式，第一次跳出一阶后，后面还有Fib(n-1)中跳法；
+     * 第一次跳出二阶后，后面还有Fib(n-2)中跳法..........................第一次跳出n阶后，后面还有 Fib(n-n)中跳法.
+     * f(n)，到达n层有多少种跳法
+     * n = 1时只有一种跳法
+     * n = 2时有两种
+     * n = 3时有四种
+     * f(n) = f(n - 1) + f(n - 2) + f(n - 3) + .... + f(n- (n - 1)) + f(n - n)
+     * f(0) = 1
+     * @param number
+     * @return
+     */
     private static int jump2(int number) {
+        //递归的出口
         if (number == 0){
             return 1;
         }

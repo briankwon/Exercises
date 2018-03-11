@@ -24,6 +24,7 @@ public class Q22KthFromTailInLinkedList {
         ListNode second = head;
 
         //first移动k - 1次，到达正数第k个节点
+        //注意判断first.next是否为空，为空时说明k超过了链表长度
         for (int i = 0; i < k - 1; i++) {
             if (first.next != null) {
                 first = first.next;

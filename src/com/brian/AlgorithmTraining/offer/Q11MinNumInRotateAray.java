@@ -15,11 +15,16 @@ public class Q11MinNumInRotateAray {
         int start = 0;
         int end = arr.length - 1;
 
+        //特殊情况：纯递增序列，相当于没有旋转
         if (arr[start] < arr[end]) {
             return arr[start];
         }
 
+        //循环的条件：保证将前面的数组和后面的数组循环完毕
+        //前面数组的值一定大于等于后面数组的值
         while (arr[start] >= arr[end]) {
+            //当end和start相邻时说明start到了前面数组的末尾，end到了后面数组的开头
+            //此时end指向的就是最小元素
             if (end - start == 1) {
                 return arr[end];
             }
@@ -31,6 +36,7 @@ public class Q11MinNumInRotateAray {
                 return inorderSearch(arr, start, end);
             }
 
+            //特殊情况：注意等号
             if (arr[mid] >= arr[start]) {
                 start = mid;
             }

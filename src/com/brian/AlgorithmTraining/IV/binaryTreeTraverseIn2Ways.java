@@ -22,16 +22,20 @@ public class binaryTreeTraverseIn2Ways {
         stack.push(head);
 
         while (!stack.isEmpty()) {
-            TreeNode node = stack.pop();
+            head = stack.pop();
 
-            System.out.print(node.val + " ");
-
-            if (node.right != null) {
-                stack.push(node.right);
+            System.out.print(head.val + " ");
+            /**
+             * 要求中间的节点都要印完后先打印左边的再打印右边的
+             * 但是因为栈的特性需要先把右节点入栈再把左节点入栈
+             * 这样出栈顺序是先左在右，也就实现了根左右的打印顺序
+             */
+            if (head.right != null) {
+                stack.push(head.right);
             }
 
-            if (node.left != null) {
-                stack.push(node.left);
+            if (head.left != null) {
+                stack.push(head.left);
             }
         }
     }
@@ -46,19 +50,49 @@ public class binaryTreeTraverseIn2Ways {
         inOrderRecur(head.right);
     }
 
+    /**
+     * 把二叉树的最左边压进栈中，这样弹出的时候就是先左再中的
+     * 在弹出的时候再把右节点按同样的规则压进栈中，这样在弹出的时候也是先左再中的，但是整体上就是左中右
+     * @param head
+     */
+//    public static void inOrderUnRecur(TreeNode head) {
+//        if (head == null) {
+//            return;
+//        }
+//
+//        Stack<TreeNode> stack = new Stack<>();
+//        stack.push(head);
+//
+//        //两个条件满足一个就继续循环
+//        while (!stack.isEmpty() || head != null) {
+//            if (head != null) {
+//                stack.push(head);
+//                head = head.left;
+//            } else {
+//                //这块老错，想清楚
+//                head = stack.pop();
+//                System.out.print(head.val + " ");
+//                head = head.right;
+//            }
+//        }
+//    }
+
     public static void inOrderUnRecur(TreeNode head) {
         if (head == null) {
             return;
         }
 
         Stack<TreeNode> stack = new Stack<>();
-        stack.push(head);
+        //这里不用push！！！！
+        //stack.push(head);
 
+        //两个条件满足一个就继续循环
         while (!stack.isEmpty() || head != null) {
             if (head != null) {
                 stack.push(head);
                 head = head.left;
             } else {
+                //这块老错，想清楚
                 head = stack.pop();
                 System.out.print(head.val + " ");
                 head = head.right;
@@ -74,6 +108,33 @@ public class binaryTreeTraverseIn2Ways {
         posOrderRecur(head.left);
         posOrderRecur(head.right);
         System.out.print(head.val + " ");
+    }
+
+    public static void posOrderUnRecur(TreeNode head) {
+        if (head == null) {
+            return;
+        }
+
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+        stack1.push(head);
+
+        while (!stack1.isEmpty()) {
+            head = stack1.pop();
+            stack2.push(head);
+
+            if (head.left != null) {
+                stack1.push(head.left);
+            }
+
+            if (head.right != null) {
+                stack1.push(head.right);
+            }
+        }
+
+        while (!stack2.isEmpty()){
+            System.out.print(stack2.pop().val + " ");
+        }
     }
 
     public static void main(String[] args) {
@@ -108,6 +169,9 @@ public class binaryTreeTraverseIn2Ways {
         System.out.println();
         System.out.print("in-order: ");
         inOrderUnRecur(head);
+        System.out.println();
+        System.out.print("pos-order: ");
+        posOrderUnRecur(head);
         System.out.println();
 //        posOrderUnRecur1(head);
 //        posOrderUnRecur2(head);

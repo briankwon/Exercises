@@ -26,7 +26,12 @@ public class Q24ReverseLinkedList {
             next = node.next;
 
             //当next到达null时说明node到链表的尾巴了
+            //这时链表是这样的
+            //  <- 1 <- 2 <- 3     4
+            //              pre   node
+            //需要连接上node和pre然后返回node
             if (next == null) {
+                node.next = pre;
                 return node;
             }
 

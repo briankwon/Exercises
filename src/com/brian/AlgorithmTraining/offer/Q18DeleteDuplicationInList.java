@@ -1,6 +1,10 @@
 package com.brian.AlgorithmTraining.offer;
 
-public class Test57 {
+/**
+ * 1->2->3->3->4->4->5
+ * 1->2->5
+ */
+public class Q18DeleteDuplicationInList {
     private static class ListNode {
         private int val;
         private ListNode next;
