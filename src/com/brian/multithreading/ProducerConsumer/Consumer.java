@@ -2,10 +2,10 @@ package com.brian.multithreading.ProducerConsumer;
 
 import java.util.concurrent.BlockingQueue;
 
-public class Producer implements Runnable {
+public class Consumer implements Runnable {
     protected BlockingQueue<Object> queue;
 
-    Producer(BlockingQueue<Object> queue) {
+    Consumer(BlockingQueue<Object> queue) {
         this.queue = queue;
     }
 
@@ -13,22 +13,22 @@ public class Producer implements Runnable {
     public void run() {
         try {
             while (true) {
-                Object good = getGood();
-                queue.put(good);
-                System.out.println("Producer put good, current size = " + queue.size());
+                Object good = queue.take();
+                System.out.println("Consumer takes good, current size = " + queue.size());
+                take(good);
             }
         } catch (InterruptedException e) {
             System.out.println("Interrupted");
         }
     }
 
-    Object getGood() {
+    void take(Object object) {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             System.out.println("Interrupted");
         }
 
-        return new Object();
+        System.out.println("Consuming object " + object.toString());
     }
 }

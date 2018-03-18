@@ -27,6 +27,10 @@ public class second {
                 continue;
             }
 
+            //先看整体的格式对不对
+            //再看最左列是否为递增
+            //再看最右列是否为非递减
+            //有问题就报错然后continue
 //            String[][] temp = new String[strs.length][3];
 //
 //            for (int i = 0; i < strs.length - 1; i = i + 2) {
@@ -61,9 +65,6 @@ public class second {
                 }
 
                 Node node = new Node(temp[1], Integer.valueOf(temp[0]), Integer.valueOf(temp[2]));
-                //node.id = Integer.valueOf(temp[0]);
-                //node.name = temp[1];
-                //node.parentId = Integer.valueOf(temp[2]);
                 maps.put(node.id, node);
             }
 
@@ -72,11 +73,6 @@ public class second {
                 Node e = entry.getValue();
                 Integer parentId = e.parentId;
                 if (parentId == 0) {
-                    //root.childs.put(e.id, e);
-//                    root.parentId = 0;
-//                    root.id = e.id;
-//                    root.name = e.name;
-//                    maps.replace(e.id, e, root);
                     root = e;
                 } else {
                     parent = maps.get(parentId);
@@ -92,7 +88,6 @@ public class second {
 
             while(!queue.isEmpty()) {
                 node = queue.poll();
-
                 int parentId = node.parentId;
 
                 if (parentId != 0) {

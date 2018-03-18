@@ -9,9 +9,36 @@ public class traverse {
         HashSet<Integer> set = new HashSet<>();
         Map<String, Integer> map1 = new LinkedHashMap<>();
 
-        for (int i = 0; i < 10; i++) {
-            map1.put(i + "", i);
+//        for (int i = 0; i < 100; i++) {
+//            map1.put(i + "", new Random().nextInt(40));
+//        }
+//
+//        for( Map.Entry<String, Integer> entry : map1.entrySet()) {
+//            System.out.println(entry.getKey() + " " + entry.getValue());
+//        }
+
+        int[] arr = new int[50];
+
+        for (int i = 0; i < 50; i++) {
+            arr[i] = new Random().nextInt(40);
         }
+
+
+        for (int i = 0; i < arr.length; i++) {
+            if (map1.containsKey(arr[i])) {
+                map1.put(arr[i] + "", map1.get(arr[i]) + 1);
+            } else {
+                map1.put(arr[i] + "", 1);
+            }
+        }
+
+        for (Map.Entry<String, Integer> entry : map1.entrySet()) {
+            if (entry.getValue() == 1) {
+                System.out.println(entry.getKey() + " " + entry.getValue());
+            }
+        }
+
+
 
         for (String key : map1.keySet()) {
             System.out.println(map1.get(key));
