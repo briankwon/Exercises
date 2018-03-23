@@ -33,17 +33,18 @@ public class LevelTraversal {
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            List<Integer> list = new ArrayList<>();
             int len = queue.size();
+            List<Integer> list = new ArrayList<>();
+
             while (len > 0) {
-                TreeNode temp = queue.poll();
+                root = queue.poll();
                 len--;
-                list.add(temp.val);
-                if (temp.left != null) {
-                    queue.add(temp.left);
+                list.add(root.val);
+                if (root.left != null) {
+                    queue.add(root.left);
                 }
-                if (temp.right != null) {
-                    queue.add(temp.right);
+                if (root.right != null) {
+                    queue.add(root.right);
                 }
             }
             results.add(list);

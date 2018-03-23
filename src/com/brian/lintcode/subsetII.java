@@ -35,6 +35,7 @@ public class subsetII {
         results.add(new ArrayList<Integer>(subset));
 
         for (int i = startindex; i < nums.length; i++) {
+            // 防止 i - 1越界，所以i != startIndex
             if (i != startindex && (nums[i] == nums[i - 1])) {
                 continue;
             }

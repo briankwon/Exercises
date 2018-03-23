@@ -1,12 +1,20 @@
 package com.brian.AlgorithmTraining.haikang;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class test {
     public static void main(String[] args) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
+
+        for (int i = 0; i < 10; i++) {
+            queue.add(new Random().nextInt(100));
+        }
+        System.out.println(queue.toString());
         Set<Student> set = new HashSet<>();
         Student s1 = new Student("brian", 1);
         System.out.println("s1.id = " + s1.id + " s1.name = " + s1.name);

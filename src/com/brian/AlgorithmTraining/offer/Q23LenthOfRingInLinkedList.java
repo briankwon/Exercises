@@ -3,11 +3,6 @@ package com.brian.AlgorithmTraining.offer;
 import com.brian.AlgorithmTraining.others.ListNode;
 
 public class Q23LenthOfRingInLinkedList {
-    public static void main(String[] args) {
-
-
-    }
-
     private static int find(ListNode head) {
         if (head == null) {
             return -1;
