@@ -1,27 +1,26 @@
 package com.brian.multithreading.ProducerConsumer;
 
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class ProConTest {
     public static void main(String[] args) {
-        int producerNum = 4;
-        int consumerNum = 3;
+        int pNum = 4;
+        int cNum = 3;
+        BlockingQueue<Object> queue = new LinkedBlockingQueue<>();
 
-        BlockingQueue<Object> queue = new LinkedBlockingDeque<>();
-
-        for (int i = 0; i < producerNum; i++) {
+        for (int i = 0; i < pNum; i++) {
             new Thread(new Producer(queue)).start();
         }
 
-        for (int i = 0; i < consumerNum; i++) {
+        for (int i = 0; i < cNum; i++) {
             new Thread(new Consumer(queue)).start();
         }
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
-            System.out.println("Main thread ends!");
+            e.printStackTrace();
         }
 
         System.exit(0);

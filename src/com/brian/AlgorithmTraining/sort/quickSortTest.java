@@ -5,36 +5,29 @@ public class quickSortTest {
         if (arr == null || arr.length == 0) {
             return;
         }
-
         if (L < R) {
-            if (R - L + 1 < 8) {
-                insertSort(arr, L, R);
-                return;
-            }
-            //swap
-            swap(arr, L + (int) Math.random() * (R - L + 1), R);
+            swap(arr, L + (int) Math.random() * (L - R + 1), R );
             int[] p = partition(arr, L, R);
             sort(arr, L, --p[0]);
             sort(arr, ++p[1], R);
         }
     }
 
-    //不稳定，试想[4,2,4,3]，第一次比较因为4 > 3，第一个4和第二个4会交换位置
     private static int[] partition(int[] arr, int L, int R) {
         int left = L - 1;
         int right = R;
 
         while (L < right) {
-            if (arr[L] == arr[R]) {
-                L++;
-            } else if (arr[L] < arr[R]) {
+            if (arr[L] < arr[R]) {
                 swap(arr, ++left, L++);
+            } else if (arr[L] == arr[R]) {
+                L++;
             } else {
                 swap(arr, --right, L);
             }
         }
 
-        swap(arr, right, R);
+        swap(arr, R, right);
         return new int[] {++left, right};
     }
 
