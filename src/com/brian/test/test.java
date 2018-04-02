@@ -51,6 +51,8 @@ public class test {
 
 
     public static void main(String[] args) {
+        System.out.println('a'  + 1);
+        System.exit(0);
 //        f(new String[]{"111", "on fire!"});
 //        spend(paperMoney.fifity);
 //        for (paperMoney pm : paperMoney.values()) {
