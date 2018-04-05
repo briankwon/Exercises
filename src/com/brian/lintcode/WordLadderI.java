@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 
+/**
+ * https://segmentfault.com/a/1190000003698569
+ */
 public class WordLadderI {
     public int ladderLength(String start, String end, Set<String> dict) {
         //如果start和end相同直接输出
