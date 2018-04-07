@@ -1,4 +1,4 @@
-package com.brian.multithreading.ProducerConsumer;
+package com.brian.multithreading.ProducerConsumerBlockingQueue;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -14,7 +14,7 @@ public class Producer implements Runnable{
         try {
             while (true) {
                 Object obj = getGood();
-                System.out.println("Producer puts good, current size of queue is " + queue.size());
+                System.out.println(Thread.currentThread().getName() + " puts good, current size of queue is " + queue.size());
                 queue.put(obj);
             }
         } catch (InterruptedException e) {

@@ -1,4 +1,4 @@
-package com.brian.multithreading.ProducerConsumer;
+package com.brian.multithreading.ProducerConsumerBlockingQueue;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -10,11 +10,11 @@ public class ProConTest {
         BlockingQueue<Object> queue = new LinkedBlockingQueue<>();
 
         for (int i = 0; i < pNum; i++) {
-            new Thread(new Producer(queue)).start();
+            new Thread(new Producer(queue), "Producer-" + i).start();
         }
 
         for (int i = 0; i < cNum; i++) {
-            new Thread(new Consumer(queue)).start();
+            new Thread(new Consumer(queue), "Consumer-" + i).start();
         }
 
         try {

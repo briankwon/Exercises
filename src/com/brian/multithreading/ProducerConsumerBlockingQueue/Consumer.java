@@ -1,4 +1,4 @@
-package com.brian.multithreading.ProducerConsumer;
+package com.brian.multithreading.ProducerConsumerBlockingQueue;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -13,7 +13,7 @@ public class Consumer implements Runnable{
         try {
             while (true) {
                 Object obj = queue.take();
-                System.out.println("Consumer takes good, current size is " + queue.size());
+                System.out.println(Thread.currentThread().getName() + " takes good, current size is " + queue.size());
                 take(obj);
             }
         } catch (InterruptedException e) {
@@ -28,6 +28,6 @@ public class Consumer implements Runnable{
             e.printStackTrace();
         }
 
-        System.out.println("Consumer is consuming " + obj.toString());
+        System.out.println(Thread.currentThread().getName() + " is consuming " + obj.toString());
     }
 }

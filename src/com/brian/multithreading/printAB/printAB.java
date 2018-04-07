@@ -1,22 +1,23 @@
 package com.brian.multithreading.printAB;
 
 public class printAB implements Runnable {
-    private Object obj;
+    private Object object;
     private String name;
 
-    printAB(Object obj, String name) {
-        this.obj = obj;
+    printAB(Object object, String name) {
+        this.object = object;
         this.name = name;
     }
 
     @Override
     public void run() {
         while (true) {
-            synchronized (obj) {
-                obj.notify();
+            synchronized (object) {
                 try {
+                    //注意这里就需要notify了
+                    object.notify();
                     System.out.println(name);
-                    obj.wait();
+                    object.wait();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -25,16 +26,16 @@ public class printAB implements Runnable {
     }
 
     public static void main(String[] args) {
-        Object obj = new Object();
-        printAB pa = new printAB(obj, "A");
-        printAB pb = new printAB(obj, "B");
+        Object object = new Object();
+        new Thread(new printAB(object, "A")).start();
+        new Thread(new printAB(object, "B")).start();
 
-        new Thread(pa).start();
         try {
-            Thread.sleep(100);
+            Thread.sleep(10);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new Thread(pb).start();
+
+        System.exit(0);
     }
 }
