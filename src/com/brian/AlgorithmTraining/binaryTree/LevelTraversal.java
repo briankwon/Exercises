@@ -21,6 +21,7 @@ public class LevelTraversal {
         head.right.right.left = new TreeNode(9);
         head.right.right.right = new TreeNode(11);
         level(head);
+        //levelTravse(head);
     }
 
     public static void level(TreeNode root) {
@@ -47,6 +48,41 @@ public class LevelTraversal {
                     queue.add(root.right);
                 }
             }
+            results.add(list);
+        }
+
+        for (List<Integer> list : results) {
+            System.out.println(list.toString());
+        }
+    }
+
+    //practice
+    public static void levelTravse(TreeNode root) {
+        List<List<Integer>> results = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            //每次遍历一层，用len表示一层的节点数量
+            int len = queue.size();
+            List<Integer> list = new ArrayList<>();
+
+            //弹出队列的同时加入每一层的结果list，同时将弹出节点的左右节点依次放入队列
+            while (len > 0) {
+                TreeNode node = queue.poll();
+                list.add(node.val);
+
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+
+                len--;
+            }
+
             results.add(list);
         }
 
