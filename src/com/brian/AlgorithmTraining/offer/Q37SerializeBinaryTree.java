@@ -38,10 +38,13 @@ public class Q37SerializeBinaryTree {
         for (String s1 : strs) {
             queue.offer(s1);
         }
-        return deserialize(queue);
+        return deserilize(queue);
     }
 
-    public static Node deserialize(Queue<String> queue) {
+    //整体上是先构造头结点，再构造左子树，再构造右子树，#标志着一个子树的结束
+    //[头结点 | 左子树 # | 右子树 #]
+    //利用queue先进先出的特性，一个用过的元素就直接出队列了，剩下的就是左子树/右子树
+    public static Node deserilize(Queue<String> queue) {
         String value = queue.poll();
 
         if (value.equals("#")) {
@@ -49,8 +52,8 @@ public class Q37SerializeBinaryTree {
         }
 
         Node head = new Node(Integer.valueOf(value));
-        head.left = deserialize(queue);
-        head.right = deserialize(queue);
+        head.left = deserilize(queue);
+        head.right = deserilize(queue);
         return head;
     }
 
