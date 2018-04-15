@@ -34,7 +34,7 @@ public class strStrII {
         for (int i = 0; i < n; i++) {
             //abc + d
             hashCode = (hashCode * 31 + source.charAt(i)) % BASE;
-            //如果不够m个字符的话没有必要进行后面的操作，continue到i=m，这时hashCode对应的字符串长度和target相同。
+            //如果不够m个字符的话没有必要进行后面的操作，continue到i = m，这时hashCode对应的字符串长度和target相同。
             if (i < m - 1) {
                 continue;
             }

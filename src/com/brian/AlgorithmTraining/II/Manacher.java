@@ -49,7 +49,7 @@ public class Manacher {
 
             max = Math.max(max, pArr[i]);
         }
-
+        //字符串已经用#处理过了，因此最长回文半径长度 - 1就是原始字符串最长回文子串的长度
         return max - 1;
     }
 
