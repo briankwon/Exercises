@@ -30,16 +30,16 @@ public class subsetI {
         results.add(new ArrayList<Integer>(subset));
 
         for (int i = startIndex; i < arr.length; i++) {
-            if (arr[i] == arr[i - 1]) {
-                continue;
-            }
+//            if (i != startIndex && arr[i] == arr[i - 1]) {
+//                continue;
+//            }
             subset.add(arr[i]);
             helper(subset, results, i + 1, arr);
             subset.remove(subset.size() - 1);
         }
     }
     public static void main(String[] args) {
-        int[] arr = {1,2,2};
+        int[] arr = {1,2,3};
         System.out.println(process(arr));
     }
 }
