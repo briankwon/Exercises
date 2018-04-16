@@ -18,8 +18,7 @@ public class Q26TreeSubstructure {
     }
 
     public static int getIndexOf(String s1, String s2) {
-
-        return 1;
+        return s1.indexOf(s2);
     }
 
     public static String serialize(Node head) {
