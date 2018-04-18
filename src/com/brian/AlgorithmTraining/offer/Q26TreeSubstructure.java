@@ -33,6 +33,14 @@ public class Q26TreeSubstructure {
         return res;
     }
 
+    public static String serialize2(Node node) {
+        if (node == null) {
+            return "#!";
+        }
+
+        return node.value + "!" + serialize(node.left) + serialize(node.right);
+    }
+
     public static void main(String[] args) {
         Node t1 = new Node(1);
         t1.left = new Node(2);
@@ -51,6 +59,7 @@ public class Q26TreeSubstructure {
         t2.right.left = new Node(9);
 
         System.out.println(serialize(t1));
+        System.out.println(serialize2(t1));
 
         System.out.println(isSubTree(t1, t2));
     }

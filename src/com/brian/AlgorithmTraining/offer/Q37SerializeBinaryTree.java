@@ -1,6 +1,8 @@
 package com.brian.AlgorithmTraining.offer;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Q37SerializeBinaryTree {
@@ -72,6 +74,7 @@ public class Q37SerializeBinaryTree {
         System.out.println(s);
 
         pre(preDe(s));
+        level(t1);
     }
 
     public static void pre(Node head) {
@@ -82,5 +85,40 @@ public class Q37SerializeBinaryTree {
         System.out.print(head.value + " ");
         pre(head.left);
         pre(head.right);
+    }
+
+    public static void level(Node head) {
+        if (head == null) {
+            return;
+        }
+
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(head);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> list = new ArrayList<>();
+
+            while (size > 0) {
+                head = queue.poll();
+                size--;
+                list.add(head.value);
+
+                if (head.left != null) {
+                    queue.offer(head.left);
+                }
+
+                if (head.right != null) {
+                    queue.offer(head.right);
+                }
+            }
+
+            res.add(list);
+        }
+
+        for (List<Integer> list : res) {
+            System.out.println(list.toString());
+        }
     }
 }

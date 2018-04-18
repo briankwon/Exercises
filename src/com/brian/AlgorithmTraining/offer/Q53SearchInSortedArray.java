@@ -1,25 +1,31 @@
-package com.brian.lintcode;
+package com.brian.AlgorithmTraining.offer;
 
-public class binarySearch {
-    public static int search(int[] arr, int target) {
+public class Q53SearchInSortedArray {
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,3,3,3,4,5};
+        System.out.println("first pos = " + search(arr, 3, true));
+        System.out.println("first pos = " + search(arr, 3, false));
+    }
+
+    public static int search(int[] arr, int target, boolean flag) {
         if (arr == null || arr.length == 0) {
             return -1;
         }
-        
 
         int start = 0;
         int end = arr.length - 1;
 
         while (start + 1 < end) {
             int mid = start + (end - start) / 2;
+
             if (arr[mid] < target) {
                 start = mid;
             } else if (arr[mid] > target) {
                 end = mid;
+            } else if (flag) {
+                end = mid;
             } else {
-                return mid;
-                //end = mid;
-                //start = mid;
+                start = mid;
             }
         }
 
@@ -32,13 +38,5 @@ public class binarySearch {
         }
 
         return -1;
-    }
-
-    public static void main(String[] args) {
-        int[] arr = {13,5,6,8,98,65,4,32,2,35,67,65,432,23,3};
-        int[] arr1 = {1,2,3,3,3,3,4,5,6};
-        System.out.println("arr.length = " + arr.length);
-        System.out.println(search(arr, 8));
-        System.out.println(search(arr1, 3));
     }
 }
