@@ -21,7 +21,37 @@ public class LevelTraversal {
         head.right.right.left = new TreeNode(9);
         head.right.right.right = new TreeNode(11);
         level(head);
+
+        List<Integer> res = new ArrayList<>();
+        getLeafNodes(head, res);
+        System.out.println(res);
         //levelTravse(head);
+    }
+
+    public static boolean TreeEquals(TreeNode a, TreeNode b) {
+        if (a == null || b == null) {
+            return false;
+        }
+
+        List<Integer> la = new ArrayList<>();
+        getLeafNodes(a, la);
+
+        return true;
+    }
+
+    public static void getLeafNodes(TreeNode root, List<Integer> res) {
+        if (root.left == null && root.right == null) {
+            res.add(root.val);
+            return;
+        }
+
+        if (root.left != null) {
+            getLeafNodes(root.left, res);
+        }
+
+        if (root.right != null) {
+            getLeafNodes(root.right, res);
+        }
     }
 
     public static void level(TreeNode root) {

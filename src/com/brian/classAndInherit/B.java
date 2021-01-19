@@ -10,4 +10,5 @@ public class B implements A {
         A a = new B();
         a.add(2);
     }
+
 }

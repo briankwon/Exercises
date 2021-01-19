@@ -1,5 +1,8 @@
 package com.brian.test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class StringTest {
     public static void main(String[] args) {
         String s = new String("hello");
@@ -10,5 +13,11 @@ public class StringTest {
 
         String s4 = "11";
         System.out.println(s3 == s4);
+
+
+        System.out.println("------------");
+        Map<String, Object> map = new HashMap<>();
+        map.put("brian", "kwon");
+        String str = (String) map.get("bb");
     }
 }

@@ -59,7 +59,8 @@ public class Q26TreeSubstructure {
         t2.right.left = new Node(9);
 
         System.out.println(serialize(t1));
-        System.out.println(serialize2(t1));
+        System.out.println(serialize(t2));
+//        System.out.println(serialize2(t1));
 
         System.out.println(isSubTree(t1, t2));
     }
